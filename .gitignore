@@ -6,4 +6,4 @@ dev.py
 notes
 report
 todo
-
+.pytest_cache/
