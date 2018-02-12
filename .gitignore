@@ -1,6 +1,8 @@
 Pipfile
 Pipfile.lock
 __pycache__/
+*.egg-info/
+requirements_dev.txt
 data/**.features.pkl
 dev.py
 notes

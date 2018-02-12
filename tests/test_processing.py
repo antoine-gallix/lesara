@@ -10,6 +10,7 @@ nb_customer_for_test = 5
 seed = 1000
 
 # ---------------------fixtures---------------------
+
 full_order_data = io.load_source_data()
 
 

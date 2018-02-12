@@ -1,3 +1,7 @@
+"""Data IO, disk and memory
+"""
+
+
 import pandas as pd
 import logging
 
@@ -8,7 +12,7 @@ features_file = 'data/features.pkl'
 
 
 def load_source_data():
-    """import data from csv"""
+    """import data from csv file"""
 
     logger.debug('load data from {}'.format(source_file))
     data = pd.read_csv(source_file, parse_dates=['created_at_date'])
