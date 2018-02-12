@@ -1,0 +1,9 @@
+Pipfile
+Pipfile.lock
+__pycache__/
+data/**.features.pkl
+dev.py
+notes
+report
+todo
+
