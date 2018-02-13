@@ -1,17 +1,15 @@
+"""extract features from order data
+"""
 import pandas as pd
-from app import io
 from datetime import datetime
 import logging
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(level='DEBUG')
 
+order_file='data/orders_dev.csv'
+features_file='data/features.pkl'
 
-def preprocess_features():
-    """Preprocess and store customer features"""
-
-    data = io.load_source_data()
-    features = extract_features(data)
-    io.save_features(features)
 
 
 def extract_features(data):
@@ -108,3 +106,13 @@ def extract_features(data):
     features = features[features_order]
 
     return features
+
+if __name__ == '__main__':
+    logger.info('read order data from {}'.format(order_file))
+    data = pd.read_csv(order_file, parse_dates=['created_at_date'])
+    logger.info('extracting features')
+    features=extract_features(data)
+    logger.info('write features data to {}'.format(features_file))
+    features.to_pickle(features_file)
+
+    

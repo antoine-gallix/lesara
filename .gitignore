@@ -3,7 +3,7 @@ Pipfile.lock
 __pycache__/
 *.egg-info/
 requirements_dev.txt
-data/**.features.pkl
+data/*
 dev.py
 notes
 report

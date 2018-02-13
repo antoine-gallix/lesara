@@ -1,5 +1,13 @@
--e .
+# main
 flask
-dill==0.2.7.1 
-numpy==1.14.0 
-pandas==0.22.0
+dill
+numpy
+pandas
+# test
+pytest
+# dev
+ipython
+rlipython
+pdbpp
+matplotlib
+
