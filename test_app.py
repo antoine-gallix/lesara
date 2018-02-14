@@ -7,8 +7,6 @@ def client():
     app=create_app('test')
     return app.test_client()
 
-
-
 # -----------------------------------------------
 
 
@@ -30,3 +28,7 @@ def test_get_random_CLV(client):
     data=json.loads(response.data)
     assert 'customer_id' in data
     assert isinstance(data['predicted_CLV'],float)
+
+def test_wrong_customer_id(client):
+    response=client.get('/customers/1000/predicted_CLV')
+    assert response.status_code==404

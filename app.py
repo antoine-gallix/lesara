@@ -4,7 +4,7 @@ import pandas as pd
 import logging
 import os
 import sqlite3
-
+from flask_json import FlaskJSON, JsonError, as_json
 # logging
 logger = logging.getLogger(__name__)
 logging.basicConfig(level='DEBUG')
@@ -22,7 +22,12 @@ def get_customer_prediction(customer_id=None):
     conn=sqlite3.connect(file)
     if customer_id:
         query='select CLV from predictions where customer_id = "{}"'
-        prediction=conn.execute(query.format(customer_id)).fetchall()[0][0]
+        results=conn.execute(query.format(customer_id)).fetchall()
+        if results:
+            prediction=results[0][0]
+        else:
+            raise JsonError(description='no data for this customer_id',
+                status_=404)
     else:
         query='select * from predictions order by random() limit 1'
         customer_id, prediction=conn.execute(query).fetchall()[0]
@@ -34,6 +39,7 @@ CLV_server = flask.Blueprint('CLV_server', 'CLV_server')
 
 
 @CLV_server.route('/customers/<customer_id>/predicted_CLV')
+@as_json
 def CLV_prediction(customer_id):
     """Return CLV prediction for the given customer_id
 
@@ -53,7 +59,7 @@ def CLV_prediction(customer_id):
         'customer_id': customer_id,
         'predicted_CLV': predicted_CLV
     }
-    return flask.json.jsonify(payload)
+    return payload
 
 @CLV_server.route('/test')
 def test():
@@ -65,6 +71,8 @@ def test():
 def create_app(config):
     app = flask.Flask('CLV_predict')
     app.register_blueprint(CLV_server)
+    FlaskJSON(app)
+
     if config == 'debug':
         app.config.predictions_file = 'data/predictions_test.db'
         app.debug = True
