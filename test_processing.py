@@ -9,7 +9,7 @@ import make_predictions
 # ---------------------fixtures---------------------
 
 
-test_order_data='data/orders_dev.csv'
+test_order_data='data/orders_test.csv'
 
 @pytest.fixture
 def order_data():
