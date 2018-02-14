@@ -1,3 +1,5 @@
+# Lesara Test Task : Customer Lifetime Value Prediction And Microservice
+
 ## Architecture choices
 
 ## Data processing
@@ -20,6 +22,7 @@ To circumvent this problem, two jobs are created, driven by command line call an
 
 ## Installation instructions
 
+Clone the repository
 Install requirements::
         
     pip install -r requirements.txt
