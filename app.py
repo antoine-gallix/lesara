@@ -68,7 +68,7 @@ def test():
 # ----| app startup
 
 
-def create_app(config):
+def create_app(config='prod'):
     app = flask.Flask('CLV_predict')
     app.register_blueprint(CLV_server)
     FlaskJSON(app)
@@ -85,5 +85,5 @@ def create_app(config):
 
 
 if __name__ == '__main__':
-    app = create_app('debug')
+    app = create_app()
     app.run()
