@@ -1,14 +1,18 @@
 """extract features from order data
+
+
+use:
+    python extract_features.py data/orders_dev.csv data/features.pkl
+
 """
 import pandas as pd
 from datetime import datetime
 import logging
+import click
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level='DEBUG')
 
-order_file='data/orders_dev.csv'
-features_file='data/features.pkl'
 
 
 
@@ -107,7 +111,10 @@ def extract_features(data):
 
     return features
 
-if __name__ == '__main__':
+@click.command()
+@click.argument('order_file',type=click.Path())
+@click.argument('features_file',type=click.Path())
+def main(order_file,features_file):
     logger.info('read order data from {}'.format(order_file))
     data = pd.read_csv(order_file, parse_dates=['created_at_date'])
     logger.info('extracting features')
@@ -116,3 +123,5 @@ if __name__ == '__main__':
     features.to_pickle(features_file)
 
     
+if __name__ == '__main__':
+    main()

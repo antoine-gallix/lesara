@@ -8,5 +8,15 @@ To circumvent this problem, two jobs are created, driven by command line call an
 
 ## Run tests
 Install requirements::
-    
+        
     pip install -r requirements.txt
+
+Creates test data::
+    
+    python make_test_data.py data/orders.csv data/orders_test.csv
+    python extract_features.py data/orders_test.csv data/features_test.pkl
+    python make_predictions.py data/features_test.pkl data/predictions_test.db
+
+Run tests::
+
+    py.test
