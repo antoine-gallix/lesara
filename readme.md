@@ -54,3 +54,5 @@ Check application::
     GET http://localhost:5000/customers/random/predicted_CLV
     # get CLV from customer_id
     GET http://localhost:5000/customers/2504175708a53b19fe067b06472e4cec/predicted_CLV
+    # wrong customer_id
+    GET http://localhost:5000/customers/1000/predicted_CLV
